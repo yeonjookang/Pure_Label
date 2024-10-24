@@ -8,6 +8,7 @@ public class PurelabelApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PurelabelApplication.class, args);
+        System.out.println("Hello PureLabel :)");
     }
 
 }
