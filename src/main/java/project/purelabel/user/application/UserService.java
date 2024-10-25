@@ -20,8 +20,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final JwtTokenProvider jwtTokenProvider;
-    private final RedisTemplate<String, String> redisTemplate;
     public void signUp(UserSignUpRequestDto signUpRequestDto) {
         if(isDuplicateId(signUpRequestDto.getId()))
             throw new UserException(UserExceptionErrorCode.DUPLICATE_ID);
@@ -40,9 +38,8 @@ public class UserService {
     }
 
     private UserLoginResponseDto generateResponseWithToken(User user) {
-        String accessToken = jwtTokenProvider.createAccessToken(user.getPk());
-        String refreshToken = jwtTokenProvider.createRefreshToken(user.getPk());
-        redisTemplate.opsForValue().set(user.getPk().toString(),refreshToken);
+        String accessToken = "skdjfiegknaskdjfioagksdljgsikjfidosjdkjgisodgjsklg";
+        String refreshToken = "aiogjisjgioajiojfidjsgksandkgnaslidngksdglsgsdgsd";
         return UserLoginResponseDto.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
