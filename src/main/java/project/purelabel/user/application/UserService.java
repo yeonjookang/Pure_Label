@@ -1,10 +1,8 @@
 package project.purelabel.user.application;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.purelabel.global.jwt.JwtTokenProvider;
 import project.purelabel.user.api.request.UserLoginRequestDto;
 import project.purelabel.user.api.request.UserSignUpRequestDto;
 import project.purelabel.user.application.response.UserLoginResponseDto;
