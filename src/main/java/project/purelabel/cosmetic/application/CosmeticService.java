@@ -134,7 +134,9 @@ public class CosmeticService {
             while ((line = br.readLine()) != null) {
                 // 줄을 콤마와 공백으로 나누고, trim()으로 공백 제거 후 리스트에 추가
                 String[] splitIngredients = line.split("[,\\s]+");
+                System.out.println("test ^^: "+ splitIngredients.length);
                 for (String ingredient : splitIngredients) {
+                    System.out.println("test: "+ingredient);
                     if (!ingredient.isEmpty()) { // 빈 문자열은 추가하지 않음
                         ingredients.add(ingredient.trim());
                     }
