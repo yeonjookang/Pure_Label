@@ -10,4 +10,5 @@ import lombok.Getter;
 public class UserLoginResponseDto {
     private String accessToken;
     private String refreshToken;
+    private Long pk;
 }

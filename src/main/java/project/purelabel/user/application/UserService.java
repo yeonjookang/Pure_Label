@@ -56,6 +56,7 @@ public class UserService {
         return UserLoginResponseDto.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
+                .pk(user.getPk())
                 .build();
     }
 
