@@ -73,8 +73,7 @@ public class CosmeticService {
         List<String> extractedIngredients = readExtractedIngredientsFromTextFile();
         List<Ingredient> matchingIngredients = new ArrayList<>();
         for (String ingredientName : extractedIngredients) {
-            Ingredient foundIngredient = ingredientRepository.findByName(ingredientName).get();
-            matchingIngredients.add(foundIngredient);
+            ingredientRepository.findByName(ingredientName).ifPresent(matchingIngredients::add);
         }
         return new CosmeticAnalyzeResponseDto(matchingIngredients);
     }
