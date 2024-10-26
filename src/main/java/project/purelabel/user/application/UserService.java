@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.purelabel.user.api.request.UserLoginRequestDto;
 import project.purelabel.user.api.request.UserSignUpRequestDto;
+import project.purelabel.user.application.response.UserInfoResponseDto;
 import project.purelabel.user.application.response.UserLoginResponseDto;
 import project.purelabel.user.domain.UserRepository;
 import project.purelabel.user.domain.entity.User;
@@ -33,6 +34,20 @@ public class UserService {
             throw new UserException(UserExceptionErrorCode.INVALID_PASSWORD);
         UserLoginResponseDto loginResponse = generateResponseWithToken(findUser.get());
         return loginResponse;
+    }
+
+    public UserInfoResponseDto getUserInfo(Long pk) {
+        Optional<User> findUser = userRepository.findByPk(pk);
+        if(!findUser.isPresent())
+            throw new UserException(UserExceptionErrorCode.NO_EXIST_USER);
+
+        return UserInfoResponseDto.builder()
+                .name(findUser.get().getName())
+                .id(findUser.get().getId())
+                .gender(findUser.get().getGender())
+                .skinType(findUser.get().getSkinType())
+                .skinWorries(findUser.get().getSkinWorries())
+                .build();
     }
 
     private UserLoginResponseDto generateResponseWithToken(User user) {
