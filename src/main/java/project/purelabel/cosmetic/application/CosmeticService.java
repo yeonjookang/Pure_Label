@@ -67,8 +67,8 @@ public class CosmeticService {
                 .build();
     }
 
-    public CosmeticAnalyzeResponseDto analyzeCosmeticImage() {
-        //saveImage(image);
+    public CosmeticAnalyzeResponseDto analyzeCosmeticImage(MultipartFile image) {
+        saveImage(image);
         runPythonScript();
         List<String> extractedIngredients = readExtractedIngredientsFromTextFile();
         List<Ingredient> matchingIngredients = new ArrayList<>();
