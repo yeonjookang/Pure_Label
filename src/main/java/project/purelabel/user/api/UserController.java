@@ -28,7 +28,7 @@ public class UserController {
         return new BaseResponse<>();
     }
 
-    @GetMapping
+    @GetMapping("/user")
     public BaseResponse<UserInfoResponseDto> getUserInfo(@Validated @RequestBody UserInfoRequestDto userInfoRequestDto){
         UserInfoResponseDto response = userService.getUserInfo(userInfoRequestDto.getPk());
         return new BaseResponse<>(response);
