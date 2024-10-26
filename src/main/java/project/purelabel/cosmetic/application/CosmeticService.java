@@ -67,9 +67,9 @@ public class CosmeticService {
                 .build();
     }
 
-    public CosmeticAnalyzeResponseDto analyzeCosmeticImage(MultipartFile image) {
-        File imageFile = saveImage(image);
-        runPythonScript(imageFile);
+    public CosmeticAnalyzeResponseDto analyzeCosmeticImage() {
+        //saveImage(image);
+        runPythonScript();
         List<String> extractedIngredients = readExtractedIngredientsFromTextFile();
         List<Ingredient> matchingIngredients = new ArrayList<>();
         for (String ingredientName : extractedIngredients) {
@@ -102,13 +102,24 @@ public class CosmeticService {
         return ingredients;
     }
 
-    private File saveImage(MultipartFile image) {
-        return new File("../image/" + image.getOriginalFilename());
+    private void saveImage(MultipartFile image) {
+        try {
+            // 파일 이름과 확장자 가져오기
+            String originalFilename = image.getOriginalFilename();
+            String extension = originalFilename != null ? originalFilename.substring(originalFilename.lastIndexOf('.')) : ".png"; // 기본 확장자를 .png로 설정
+
+            // 저장할 파일 경로 설정
+            File file = new File("/home/server/image/image" + extension);
+            // 파일을 지정한 경로에 저장
+            image.transferTo(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void runPythonScript(File imageFile) {
+    private void runPythonScript() {
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python3", "path/to/your/script.py", imageFile.getAbsolutePath());
+            ProcessBuilder processBuilder = new ProcessBuilder("python3", "/home/server/ML/ocr_inference.py");
             processBuilder.redirectErrorStream(true);
             Process process = processBuilder.start();
             process.waitFor();
@@ -119,7 +130,7 @@ public class CosmeticService {
 
     private List<String> readExtractedIngredientsFromTextFile() {
         List<String> ingredients = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("path/to/your/output.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("/home/server/ML/result.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 // 줄을 콤마와 공백으로 나누고, trim()으로 공백 제거 후 리스트에 추가

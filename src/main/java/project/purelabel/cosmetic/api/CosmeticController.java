@@ -36,8 +36,10 @@ public class CosmeticController {
     }
 
     @GetMapping("/image/analyze")
-    public BaseResponse<CosmeticAnalyzeResponseDto> analyzeCosmeticImage(@RequestPart(value = "imageFile")MultipartFile image){
-        CosmeticAnalyzeResponseDto response = cosmeticService.analyzeCosmeticImage(image);
+    public BaseResponse<CosmeticAnalyzeResponseDto> analyzeCosmeticImage(
+            //@RequestPart(value = "imageFile")MultipartFile image
+            ){
+        CosmeticAnalyzeResponseDto response = cosmeticService.analyzeCosmeticImage();
         return new BaseResponse<>(response);
     }
     @GetMapping("/text/analyze")
