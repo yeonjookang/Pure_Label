@@ -133,7 +133,7 @@ public class CosmeticService {
             String line;
             while ((line = br.readLine()) != null) {
                 // 줄을 기준으로 읽어온 후, trim()으로 공백 제거 후 리스트에 추가
-                String trimmedLine = line.trim();
+                String trimmedLine = line.replaceAll("\\s+", "");
                 if (!trimmedLine.isEmpty()) {
                     // 줄을 콤마(,)로 나누고, trim()으로 공백 제거 후 리스트에 추가
                     String[] splitIngredients = trimmedLine.split("\\s*,\\s*"); // 콤마를 기준으로 분리하고 양쪽 공백 제거
