@@ -3,7 +3,6 @@ package project.purelabel.cosmetic.domain;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import project.purelabel.cosmetic.domain.value.CosmeticType;
-import project.purelabel.user.domain.value.SkinWorry;;
 
 import java.util.Arrays;
 import java.util.List;
