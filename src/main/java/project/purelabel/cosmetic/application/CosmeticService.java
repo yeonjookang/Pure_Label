@@ -132,13 +132,16 @@ public class CosmeticService {
         try (BufferedReader br = new BufferedReader(new FileReader("/home/server/ML/result.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // 줄을 콤마와 공백으로 나누고, trim()으로 공백 제거 후 리스트에 추가
-                String[] splitIngredients = line.split("[,\\s]+");
-                System.out.println("test ^^: "+ splitIngredients.length);
-                for (String ingredient : splitIngredients) {
-                    System.out.println("test: "+ingredient);
-                    if (!ingredient.isEmpty()) { // 빈 문자열은 추가하지 않음
-                        ingredients.add(ingredient.trim());
+                // 줄을 기준으로 읽어온 후, trim()으로 공백 제거 후 리스트에 추가
+                String trimmedLine = line.trim();
+                if (!trimmedLine.isEmpty()) {
+                    // 줄을 콤마(,)로 나누고, trim()으로 공백 제거 후 리스트에 추가
+                    String[] splitIngredients = trimmedLine.split("\\s*,\\s*"); // 콤마를 기준으로 분리하고 양쪽 공백 제거
+                    for (String ingredient : splitIngredients) {
+                        System.out.println("Test: "+ingredient);
+                        if (!ingredient.isEmpty()) { // 빈 문자열은 추가하지 않음
+                            ingredients.add(ingredient.trim());
+                        }
                     }
                 }
             }
