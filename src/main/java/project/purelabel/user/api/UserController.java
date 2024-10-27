@@ -28,9 +28,9 @@ public class UserController {
         return new BaseResponse<>();
     }
 
-    @PostMapping
-    public BaseResponse<UserInfoResponseDto> getUserInfo(@Validated @RequestBody UserInfoRequestDto userInfoRequestDto){
-        UserInfoResponseDto response = userService.getUserInfo(userInfoRequestDto.getPk());
+    @GetMapping
+    public BaseResponse<UserInfoResponseDto> getUserInfo(@PathVariable Long userPk){
+        UserInfoResponseDto response = userService.getUserInfo(userPk);
         return new BaseResponse<>(response);
     }
 }
