@@ -79,6 +79,7 @@ public class CosmeticService {
     }
 
     public CosmeticAnalyzeResponseDto analyzeCosmeticText(String content) {
+        content = content.replaceAll("\\n", " ");
         List<String> extractedIngredients = readExtractedIngredientsFromText(content);
         List<Ingredient> matchingIngredients = new ArrayList<>();
 
