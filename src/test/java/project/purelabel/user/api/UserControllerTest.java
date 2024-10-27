@@ -112,7 +112,7 @@ class UserControllerTest {
         String password = "userPassword";
         Gender gender = Gender.남성;
         SkinType skinType = SkinType.중성;
-        List<SkinWorry> skinWorries = List.of(SkinWorry.각질, SkinWorry.미백_잡티, SkinWorry.모공, SkinWorry.주름_탄력, SkinWorry.속건조, SkinWorry.다크서클);
+        List<SkinWorry> skinWorries = List.of(SkinWorry.각질, SkinWorry.미백, SkinWorry.모공, SkinWorry.주름, SkinWorry.속건조, SkinWorry.다크서클);
 
         UserSignUpRequestDto user = UserSignUpRequestDto.builder()
                 .name(name)
