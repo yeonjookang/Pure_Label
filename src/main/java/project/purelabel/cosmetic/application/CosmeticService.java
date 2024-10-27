@@ -83,6 +83,7 @@ public class CosmeticService {
         List<Ingredient> matchingIngredients = new ArrayList<>();
 
         for (String ingredientName : extractedIngredients) {
+            System.out.println("test: "+ingredientName);
             ingredientRepository.findByName(ingredientName).ifPresent(matchingIngredients::add);
         }
 
