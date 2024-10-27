@@ -28,7 +28,7 @@ public class UserController {
         return new BaseResponse<>();
     }
 
-    @GetMapping
+    @GetMapping("/{userPk}")
     public BaseResponse<UserInfoResponseDto> getUserInfo(@PathVariable Long userPk){
         UserInfoResponseDto response = userService.getUserInfo(userPk);
         return new BaseResponse<>(response);
