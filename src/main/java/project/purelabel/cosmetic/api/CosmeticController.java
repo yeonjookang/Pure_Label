@@ -35,14 +35,14 @@ public class CosmeticController {
         return new BaseResponse<>(cosmeticInfoResponse);
     }
 
-    @GetMapping("/image/analyze")
+    @PostMapping("/image/analyze")
     public BaseResponse<CosmeticAnalyzeResponseDto> analyzeCosmeticImage(
             @RequestPart(value = "imageFile")MultipartFile image
             ){
         CosmeticAnalyzeResponseDto response = cosmeticService.analyzeCosmeticImage(image);
         return new BaseResponse<>(response);
     }
-    @GetMapping("/text/analyze")
+    @PostMapping("/text/analyze")
     public BaseResponse<CosmeticAnalyzeResponseDto> analyzeCosmeticText(@Validated @RequestBody CosmeticTextAnalyzeRequestDto requestDto){
         CosmeticAnalyzeResponseDto response = cosmeticService.analyzeCosmeticText(requestDto.getContent());
         return new BaseResponse<>(response);
